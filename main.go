@@ -20,6 +20,19 @@ type Config struct {
 }
 
 func main() {
+	if len(os.Args) > 1 {
+		command := os.Args[1]
+		if command == "--help" {
+			PrintHelp()
+		} else {
+			log.Fatal("unknown argument: " + command)
+		}
+	} else {
+		RunApplication()
+	}
+}
+
+func RunApplication() {
 	config := CreateConfigFromEnv()
 
 	PrintConfig(config)
@@ -67,7 +80,9 @@ func PrintConfig(config Config) {
 
 	fmt.Println("Mailgun mailing list (from MAILGUN_MAILING_LIST):", config.MailingListAddress)
 
-	fmt.Println("HTTP port:", config.HttpPort)
+	fmt.Println("HTTP port (from SUBSCRIBE_HTTP_PORT):", config.HttpPort)
+
+	fmt.Println("Redirect URL after subscribe (from SUBSCRIBE_REDIRECT_URL):", config.RedirectUrlAfterSubscribe)
 }
 
 func StartHttpServer(mg mailgun.Mailgun, config Config) {
@@ -91,4 +106,10 @@ func StartHttpServer(mg mailgun.Mailgun, config Config) {
 	})
 
 	http.ListenAndServe(":"+strconv.Itoa(config.HttpPort), nil)
+}
+
+func PrintHelp() {
+	fmt.Println("You can report issues at: https://github.com/amyboyd/go-mailgun-mailing-list-api/issues")
+	fmt.Println("You can download the latest binary from: https://github.com/amyboyd/go-mailgun-mailing-list-api/releases")
+	fmt.Println("The source code is available at: https://github.com/amyboyd/go-mailgun-mailing-list-api")
 }
