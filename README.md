@@ -29,7 +29,7 @@ Add a form to your web page that submits the user's email address to the API:
 ```html
 <form action="http://host:8000/subscribe">
 	<input type="email" name="email" placeholder="Email your email address..." />
-	<input type="button" value="Subscribe to the newsletter" />
+	<input type="submit" value="Subscribe to the newsletter" />
 </form>
 ```
 
