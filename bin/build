@@ -1,0 +1,8 @@
+set -o errexit
+set -o nounset
+
+TARGET=build/mailgun-mailing-list-api
+
+go build -o $TARGET
+
+echo "Executable has been created: $TARGET"
