@@ -16,9 +16,11 @@ export SUBSCRIBE_HTTP_PORT=8000
 export SUBSCRIBE_REDIRECT_URL=http://yourdomain.com/newsletter/success
 ```
 
-Run the application:
+Download and run the application:
 
 ```
+curl -L https://github.com/amyboyd/go-mailgun-mailing-list-api/releases/download/v0.1.0/mailgun-mailing-list-api -o mailgun-mailing-list-api
+chmod +x mailgun-mailing-list-api
 ./mailgun-mailing-list-api
 ```
 
